@@ -89,4 +89,7 @@ export default HomePageWrapper;
 HomePage.propTypes = {
 	notes: PropTypes.array,
 	keyword: PropTypes.string,
+	onAdd: PropTypes.func.isRequired,
+	defaultKeyword: PropTypes.string,
+	keywordChange: PropTypes.func.isRequired,
 };

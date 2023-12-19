@@ -91,4 +91,8 @@ class DetailPage extends React.Component {
 
 DetailPage.propTypes = {
 	note: PropTypes.array,
+	id: PropTypes.string.isRequired,
+	onArchive: PropTypes.func.isRequired,
+	onUnarchive: PropTypes.func.isRequired,
+	onDelete: PropTypes.func.isRequired,
 };
