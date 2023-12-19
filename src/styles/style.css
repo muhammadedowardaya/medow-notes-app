@@ -193,6 +193,7 @@ a {
 .detail-page > .title {
 	line-height: 3rem;
 	font-size: 3rem;
+    text-wrap: wrap;
 }
 
 .detail-page > .createdAt {
