@@ -72,4 +72,5 @@ export default NoteInput;
 NoteInput.propTypes = {
 	title: PropTypes.string,
 	body: PropTypes.string,
+	addNote: PropTypes.func.isRequired,
 };

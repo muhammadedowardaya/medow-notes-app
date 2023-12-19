@@ -1,8 +1,6 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-
-import NoteDeleteButton from "./NoteDeleteButton";
 import { showFormattedDate } from "../utils";
 
 export default function NoteItem({ id, title, createdAt, body }) {
