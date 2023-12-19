@@ -188,6 +188,7 @@ a {
 	padding: 60px 20px;
 	margin: 0 auto;
 	width: 90vw;
+    max-width: 100vw;
 }
 
 .detail-page > .title {
