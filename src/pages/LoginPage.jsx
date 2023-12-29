@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { login } from "../utils/network-data";
 
@@ -8,7 +8,6 @@ import LocaleContext from "../contexts/LocaleContext";
 
 export default function LoginPage({ loginSuccess }) {
 	const { locale } = React.useContext(LocaleContext);
-	const navigate = useNavigate();
 
 	const [email, onEmailChangeHandler] = useInput("");
 	const [password, onPasswordChangeHandler] = useInput("");

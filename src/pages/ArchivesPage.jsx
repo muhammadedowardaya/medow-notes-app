@@ -8,8 +8,7 @@ import { getArchivedNotes } from "../utils/network-data";
 import LocaleContext from "../contexts/LocaleContext";
 
 export default function ArchivesPage() {
-
-    const {locale} = React.useContext(LocaleContext);
+	const { locale } = React.useContext(LocaleContext);
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [notes, setNotes] = React.useState([]);
@@ -35,7 +34,7 @@ export default function ArchivesPage() {
 		getNotes().then((response) => {
 			setNotes(response.data);
 		});
-	});
+	}, []);
 
 	let filteredNotes = [];
 	if (Array.isArray(notes) && notes && notes.length > 0) {
@@ -50,7 +49,11 @@ export default function ArchivesPage() {
 		<section id="home-page">
 			<h2>{locale === "id" ? "Catatan Arsip" : "Archived Notes"}</h2>
 			<SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
-			{filteredNotes.length < 1 ? <NoteEmpty /> : <NoteList notes={filteredNotes} />}
+			{filteredNotes.length < 1 ? (
+				<NoteEmpty />
+			) : (
+				<NoteList notes={filteredNotes} />
+			)}
 		</section>
 	);
 }

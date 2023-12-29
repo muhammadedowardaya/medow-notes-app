@@ -12,5 +12,5 @@ export default function NoteAddPageButton({ onAdd }) {
 }
 
 NoteAddPageButton.propTypes = {
-    onAdd:PropTypes.func.isRequired
-}
+	onAdd: PropTypes.func.isRequired,
+};

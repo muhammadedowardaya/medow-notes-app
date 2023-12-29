@@ -17,19 +17,31 @@ export default function DetailPage() {
 	const navigate = useNavigate();
 	const [note, setNote] = React.useState({});
 
-	const onArchiveHandler = () => {
-		archiveNote(id);
-		navigate("/archives");
+	const onArchiveHandler = async () => {
+		try {
+			await archiveNote(id);
+			navigate("/archives");
+		} catch (error) {
+			//
+		}
 	};
 
-	const onUnarchiveHandler = () => {
-		unarchiveNote(id);
-		navigate("/");
+	const onUnarchiveHandler = async () => {
+		try {
+			await unarchiveNote(id);
+			navigate("/");
+		} catch (error) {
+			//
+		}
 	};
 
-	const onDeleteHandler = () => {
-		deleteNote(id);
-		navigate("/");
+	const onDeleteHandler = async () => {
+		try {
+			await deleteNote(id);
+			navigate("/");
+		} catch (error) {
+			//
+		}
 	};
 
 	React.useEffect(() => {

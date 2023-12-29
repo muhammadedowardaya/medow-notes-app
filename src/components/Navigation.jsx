@@ -10,6 +10,8 @@ import {
 import { FiLogOut } from "react-icons/fi";
 import { FaRegStickyNote } from "react-icons/fa";
 
+import PropTypes from "prop-types";
+
 import LocaleContext from "../contexts/LocaleContext";
 
 export default function Navigation({ logout, name }) {
@@ -65,4 +67,10 @@ export default function Navigation({ logout, name }) {
 			</ul>
 		</nav>
 	);
+}
+
+
+Navigation.propTypes = {
+    logout: PropTypes.func.isRequired,
+    name: PropTypes.string
 }

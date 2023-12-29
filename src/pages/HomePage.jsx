@@ -5,13 +5,11 @@ import NoteAddButton from "../components/NoteAddPageButton";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import NoteEmpty from "../components/NoteEmpty";
 
-import PropTypes from "prop-types";
 import { getActiveNotes } from "../utils/network-data";
 import LocaleContext from "../contexts/LocaleContext";
 
 export default function HomePage() {
-
-    const {locale} = React.useContext(LocaleContext);
+	const { locale } = React.useContext(LocaleContext);
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -42,7 +40,7 @@ export default function HomePage() {
 		getNotes().then((response) => {
 			setNotes(response.data);
 		});
-	});
+	}, []);
 
 	let filteredNotes = [];
 	if (Array.isArray(notes) && notes && notes.length > 0) {
@@ -57,7 +55,11 @@ export default function HomePage() {
 		<section id="home-page">
 			<h2>{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
 			<SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
-			{filteredNotes.length < 1  ? <NoteEmpty /> : <NoteList notes={filteredNotes} />}
+			{filteredNotes.length < 1 ? (
+				<NoteEmpty />
+			) : (
+				<NoteList notes={filteredNotes} />
+			)}
 			<NoteAddButton onAdd={onAddHandler} />
 		</section>
 	);

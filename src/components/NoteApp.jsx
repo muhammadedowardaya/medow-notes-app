@@ -81,9 +81,9 @@ export default function NoteApp() {
 	};
 
 	React.useEffect(() => {
-		setLoading(true);
 		if (isOnline) {
 			const getAuthedUser = async () => {
+                setLoading(true);
 				try {
 					const { data } = await getUserLogged();
 					return data;
@@ -93,12 +93,14 @@ export default function NoteApp() {
 			};
 			getAuthedUser().then((response) => {
 				if (response === null) {
-					navigate("/login");
+                    if(currentPath !== "/register"){
+                        navigate("/login");
+                    }
 				} else {
 					setName(response.name);
 					setAuthedUser(response.data);
 				}
-				setLoading(false);
+                setLoading(false);
 			});
 		} else {
 			setLoading(false);
