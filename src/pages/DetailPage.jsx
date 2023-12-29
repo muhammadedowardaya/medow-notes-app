@@ -1,98 +1,63 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-	archiveNote,
-	deleteNote,
-	getNote,
-	unarchiveNote,
-} from "../utils/local-data";
 import { showFormattedDate } from "../utils";
 import NoteArchiveButton from "../components/NoteArchiveButton";
 import NoteDeleteButton from "../components/NoteDeleteButton";
 import NoteUnarchiveButton from "../components/NoteUnarchiveButton";
 
-import PropTypes from "prop-types";
+import {
+	archiveNote,
+	deleteNote,
+	getNote,
+	unarchiveNote,
+} from "../utils/network-data";
 
-export default function DetailPageWrapper() {
+export default function DetailPage() {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const [note, setNote] = React.useState({});
 
-	const handleArchive = () => {
+	const onArchiveHandler = () => {
 		archiveNote(id);
-		navigate("/");
+		navigate("/archives");
 	};
 
-	const handleUnarchive = () => {
+	const onUnarchiveHandler = () => {
 		unarchiveNote(id);
 		navigate("/");
 	};
 
-	const handleDelete = () => {
+	const onDeleteHandler = () => {
 		deleteNote(id);
 		navigate("/");
 	};
 
-	return (
-		<DetailPage
-			id={id}
-			onArchive={handleArchive}
-			onUnarchive={handleUnarchive}
-			onDelete={handleDelete}
-		/>
-	);
-}
-
-class DetailPage extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			note: getNote(props.id),
+	React.useEffect(() => {
+		const getNoteDetail = async () => {
+			try {
+				const response = await getNote(id);
+				return response;
+			} catch (error) {
+				console.error("terdapat error");
+			}
 		};
 
-		this.onArchiveHandler = this.onArchiveHandler.bind(this);
-		this.onUnarchiveHandler = this.onUnarchiveHandler.bind(this);
-		this.onDeleteHandler = this.onDeleteHandler.bind(this);
-	}
+		getNoteDetail().then((response) => {
+			setNote(response.data);
+		});
+	}, []);
 
-	onArchiveHandler() {
-		const { onArchive } = this.props;
-		onArchive();
-	}
-
-	onUnarchiveHandler() {
-		const { onUnarchive } = this.props;
-		onUnarchive();
-	}
-
-	onDeleteHandler() {
-		const { onDelete } = this.props;
-		onDelete();
-	}
-
-	render() {
-		return (
-			<div className="detail-page">
-				<h1 className="title">{this.state.note.title}</h1>
-				<p className="createdAt">
-					{showFormattedDate(this.state.note.createdAt)}
-				</p>
-				<p className="body">{this.state.note.body}</p>
-				{this.state.note.archived == true ? (
-					<NoteUnarchiveButton onUnarchive={this.onUnarchiveHandler} />
-				) : (
-					<NoteArchiveButton onArchive={this.onArchiveHandler} />
-				)}
-				<NoteDeleteButton onDelete={this.onDeleteHandler} />
-			</div>
-		);
-	}
+	return (
+		<div className="detail-page">
+			<h1 className="title">{note.title}</h1>
+			<p className="createdAt">{showFormattedDate(note.createdAt)}</p>
+			<p className="body">{note.body}</p>
+			{note.archived == true ? (
+				<NoteUnarchiveButton onUnarchive={onUnarchiveHandler} />
+			) : (
+				<NoteArchiveButton onArchive={onArchiveHandler} />
+			)}
+			<NoteDeleteButton onDelete={onDeleteHandler} />
+		</div>
+	);
 }
-
-DetailPage.propTypes = {
-	note: PropTypes.array,
-	id: PropTypes.string.isRequired,
-	onArchive: PropTypes.func.isRequired,
-	onUnarchive: PropTypes.func.isRequired,
-	onDelete: PropTypes.func.isRequired,
-};

@@ -1,76 +1,56 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
 import NoteList from "../components/NoteList";
-import { getArchivedNotes } from "../utils/local-data";
 import NoteEmpty from "../components/NoteEmpty";
 import { useSearchParams } from "react-router-dom";
 
-import PropTypes from "prop-types";
+import { getArchivedNotes } from "../utils/network-data";
+import LocaleContext from "../contexts/LocaleContext";
 
-function ArchivesPageWrapper() {
+export default function ArchivesPage() {
+
+    const {locale} = React.useContext(LocaleContext);
+
 	const [searchParams, setSearchParams] = useSearchParams();
-	const currentKeyword = searchParams.get("keyword");
+	const [notes, setNotes] = React.useState([]);
+	const [keyword, setKeyword] = React.useState(() => {
+		return searchParams.get("keyword") || "";
+	});
 
-	function changeSearchParams(newKeyword) {
-		setSearchParams({ keyword: newKeyword });
+	const onKeywordChangeHandler = (keyword) => {
+		setKeyword(keyword);
+		setSearchParams({ keyword: keyword });
+	};
+
+	React.useEffect(() => {
+		const getNotes = async () => {
+			try {
+				const notes = await getArchivedNotes();
+				return notes;
+			} catch (error) {
+				console.info("terjadi error");
+			}
+		};
+
+		getNotes().then((response) => {
+			setNotes(response.data);
+		});
+	});
+
+	let filteredNotes = [];
+	if (Array.isArray(notes) && notes && notes.length > 0) {
+		if (notes.length > 0) {
+			filteredNotes = notes.filter((note) => {
+				return note.title.toLowerCase().includes(keyword.toLowerCase());
+			});
+		}
 	}
 
 	return (
-		<ArchivesPage
-			defaultKeyword={currentKeyword}
-			keywordChange={changeSearchParams}
-		/>
+		<section id="home-page">
+			<h2>{locale === "id" ? "Catatan Arsip" : "Archived Notes"}</h2>
+			<SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
+			{filteredNotes.length < 1 ? <NoteEmpty /> : <NoteList notes={filteredNotes} />}
+		</section>
 	);
 }
-
-class ArchivesPage extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			notes: getArchivedNotes(),
-			keyword: props.defaultKeyword || "",
-		};
-
-		this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
-	}
-
-	onKeywordChangeHandler(keyword) {
-		this.setState(() => {
-			return {
-				keyword,
-			};
-		});
-
-		this.props.keywordChange(keyword);
-	}
-
-	render() {
-		const notesArchived = this.state.notes.filter((note) => {
-			return note.title
-				.toLowerCase()
-				.includes(this.state.keyword.toLowerCase());
-		});
-
-		return (
-			<section id="archives-page">
-				<h2>Catatan Arsip</h2>
-				<SearchBar
-					keyword={this.state.keyword}
-					keywordChange={this.onKeywordChangeHandler}
-				/>
-				{this.state.notes.length < 1 ? (
-					<NoteEmpty />
-				) : (
-					<NoteList notes={notesArchived} />
-				)}
-			</section>
-		);
-	}
-}
-
-export default ArchivesPageWrapper;
-
-ArchivesPage.propTypes = {
-	defaultKeyword: PropTypes.string,
-	keywordChange: PropTypes.func.isRequired,
-};
