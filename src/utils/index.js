@@ -34,7 +34,7 @@ const getTimeAgo = (createdAt) => {
 
 const getBackgroundColorClass = (index) => {
 	const colors = [
-		'bg-[#FF8A8A] text-white', // soft red
+		'bg-[#FF8A8A] text-slate-900', // soft red
 		'bg-[#FFF4B5] text-slate-700', // soft yellow
 		'bg-[#A1EEBD] text-slate-900', // soft green
 		'bg-[#87A2FF] text-white', // soft blue
