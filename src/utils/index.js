@@ -41,7 +41,7 @@ const getBackgroundColorClass = (index) => {
 		'bg-[#A594F9] text-white', // soft purple
 		'bg-[#FF76CE] text-white', // soft orange
 		'bg-[#FFD1E3] text-slate-700', // soft pink
-		'bg-[#FBF9F1] text-slate-700', // soft white
+		'bg-[#8785A2] text-slate-100', // soft white
 	];
 
 	return colors[index % colors.length];

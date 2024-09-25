@@ -61,27 +61,27 @@ export default function HomePage() {
     }
 
     return (
-        <section id="home-page" className="relative sm:fixed flex flex-col sm:grid sm:grid-cols-[50vw_50vw] overflow-hidden">
-            <div className="sm:row-start-1 sm:col-start-1 flex flex-col order-2">
-                <div className="p-4 fixed z-20 sm:static top-[40px] left-0 right-0 bg-[#229799]">
-                    <h2 className="mb-4 text-white text-center text-[120%]">{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
-                    <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} className="rounded w-full max-w-[400px] mx-auto border border-[#424242]" iconClassName="text-white bg-[#424242] w-10 h-10 rounded-r p-2"/>
+        <section id="home-page" className="relative sm:fixed left-0 right-0 top-0 bottom-0 flex flex-col sm:grid sm:grid-cols-[50vw_50vw] overflow-hidden">
+            <div className="sm:row-start-1 sm:col-start-1 flex flex-col order-2 pt-12 mx-4 sm:ml-10">
+                <div className="p-4 pb-8 sm:py-8 fixed z-20 sm:static top-[40px] sm:top-[40px] left-0 right-0 bg-[#FFC7C7] dark:bg-[#2C3639]">
+                    <h2 className="mb-4 mt-4 sm:mt-0 dark:text-white text-center text-[120%] font-bold">{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
+                    <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} className="rounded w-full max-w-[400px] mx-auto border border-[#424242] dark:text-[#171717]" iconClassName="text-white bg-[#424242] w-10 h-10 rounded-r p-2"/>
                 </div>
                 {filteredNotes.length < 1 ? (
                     <div className="pt-24 sm:h-[480px] sm:pt-0 sm:p-4 flex justify-center items-center">
                         <NoteEmpty />
                     </div>
                 ) : (
-                    <div className="pt-32 sm:h-[calc(100vh-20vh)] lg:h-[calc(100vh-26vh)] sm:p-4  overflow-y-auto sm:bg-[#424242]">
-                        <NoteList notes={filteredNotes} className="flex flex-col gap-4 pb-10" />
+                    <div className="pt-32 px-4 min-h-screen sm:min-h-[max-content] sm:h-[calc(100vh-24vh)] lg:h-[calc(100vh-33vh)] sm:p-4 overflow-y-auto sm:bg-[#FFE2E2] dark:bg-[#A27B5C]">
+                        <NoteList notes={filteredNotes} className="flex flex-col gap-8 lg:gap-6 pb-16 lg:pt-8 lg:pb-10 lg:px-4" classNameItem="dark:bg-[#DCD7C9] dark:text-[#171717]"/>
                     </div>
                 )}
             </div>
-            <div className="hidden sm:block sm:col-start-2 sm:p-4 order-1 bg-[#F5F5F5] w-full">
-                <h3 className="text-center mb-2">{locale === 'en' ? 'Add new note' : 'Tambah catatan baru'}</h3>
+            <div className="hidden sm:block sm:col-start-2 sm:pt-4 lg:pb-8 lg:p-4 sm:pb-10 sm:mt-20 sm:mx-4 lg:mx-10 mt-4 order-1 h-max bg-[#3F4E4F]">
+                <h3 className="text-center mb-6">{locale === 'en' ? 'Add new note' : 'Tambah catatan baru'}</h3>
                 <NoteInput addNote={addNoteHandler} />
             </div>
-            <NoteAddButton onAdd={onAddHandler} className="fixed sm:hidden bottom-4 right-4 animate-slow-pulse hover:animate-none" />
+            <NoteAddButton onAdd={onAddHandler} className="fixed sm:hidden bottom-4 right-5 dark:bg-[#2C3639] rounded-full" />
         </section>
     );
 }

@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 export default function NoteDeleteButton({ id, onDelete }) {
 	return (
 		<button className="note-delete__button" onClick={() => onDelete(id)}>
-			<MdDelete className="w-10 h-10"/>
+			<MdDelete className="w-5 h-5 sm:w-10  sm:h-10"/>
 		</button>
 	);
 }

@@ -13,7 +13,7 @@ export default function SearchBar({ keyword, keywordChange, className, iconClass
                 className="w-full h-full p-2 rounded-l focus-within:outline-none"
                 type="text"
                 placeholder={
-                    locale === "id" ? "Cari berdasarkan title" : "Search by title"
+                    locale === "id" ? "Cari berdasarkan judul" : "Search by title"
                 }
                 value={keyword}
                 onChange={(event) => keywordChange(event.target.value)}

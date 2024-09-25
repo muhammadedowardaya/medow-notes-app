@@ -124,8 +124,8 @@ export default function DetailPage() {
     }, []);
 
     return (
-        <div className="detail-page">
-            <ul className="flex items-center gap-x-4 justify-center mb-4">
+        <div className="detail-page px-4">
+            <ul className="flex items-center gap-x-4 justify-center my-4">
                 <li>
                     <Link to="/" className="cursor-pointer underline underline-offset-2 px-2 py-2 block">Home</Link>
                 </li>
@@ -136,10 +136,10 @@ export default function DetailPage() {
                     <span>{locale === 'en' ? 'Note Detail' : 'Detail Catatan'}</span>
                 </li>
             </ul>
-            <div className="border-2 w-full sm:max-w-[70%] mx-auto bg-[#EAE4DD] p-4">
+            <div className="border-2 w-full sm:max-w-[70%] mx-auto bg-[#FFC7C7] dark:bg-[#3F4E4F] dark:text-[#F5E8C7] p-4">
                 <h1 className="title font-bold text-[150%]">{note.title}</h1>
-                <p className="createdAt text-sm underline underline-offset-4">{showFormattedDate(note.createdAt)}</p>
-                <div className="body my-4 ql-editor border border-[#E1D7C6] bg-[#295F98] text-[#F5F5F5]" dangerouslySetInnerHTML={{ __html: note.body }}></div>
+                <p className="createdAt mt-2 underline underline-offset-4">{showFormattedDate(note.createdAt)}</p>
+                <div className="body my-4 ql-editor border border-[#E1D7C6] bg-[#FFE2E2] text-[#171717] dark:text-[#171717] dark:bg-[#DCD7C9]" dangerouslySetInnerHTML={{ __html: note.body }}></div>
                 <div className="flex items-center gap-x-4">
                     {note.archived == true ? (
                         <div className="flex items-center gap-x-2">

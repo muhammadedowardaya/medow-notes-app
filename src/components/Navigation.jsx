@@ -24,7 +24,7 @@ export default function Navigation({ logout, name }) {
     const currentPath = location.pathname;
 
     return (
-        <nav className="navigation flex items-center justify-between py-2 pb-3 px-4 bg-[#424242] text-white">
+        <nav className="navigation flex items-center justify-between py-3 px-4 bg-[#8785A2] text-white dark:bg-[#3F4E4F]">
             <Link to="/">
                 <h1 className="items-center justify-center gap-x-2 hidden xs:flex">
                     <span className="hidden sm:inline-block">MEDOW</span>

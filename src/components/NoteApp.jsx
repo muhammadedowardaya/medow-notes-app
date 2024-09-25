@@ -90,7 +90,7 @@ export default function NoteApp() {
                 text: 'You will need to log in again to access your account.',
                 icon: 'warning',
                 showConfirmButton: true,
-                confirmButtonText:'Yes',
+                confirmButtonText: 'Yes',
                 showCancelButton: true
             }).then(response => {
                 if (response.isConfirmed) {
@@ -106,7 +106,7 @@ export default function NoteApp() {
                 text: 'Kamu perlu masuk kembali untuk mengakses akunmu.',
                 icon: 'warning',
                 showConfirmButton: true,
-                confirmButtonText:'Ya',
+                confirmButtonText: 'Ya',
                 showCancelButton: true
             }).then(response => {
                 if (response.isConfirmed) {
@@ -180,6 +180,20 @@ export default function NoteApp() {
         }
     }, [currentPath]);
 
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (theme === 'dark') {
+                if(!document.documentElement.classList.contains('dark')){
+                    document.documentElement.classList.add('dark');
+                }
+            }else{
+                if(document.documentElement.classList.contains('dark')){
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+        }
+    }, [theme])
+
 
     if (!isOnline) {
         return (
@@ -213,11 +227,11 @@ export default function NoteApp() {
     return (
         <NotesProvider value={notesContext}>
             <LocaleContext.Provider value={localeContext}>
-                <div className={`note-app ${loading ? "loading" : ""} relative pt-10 text-xs md:text-sm lg:text-base`}>
+                <div className={`note-app ${loading ? "loading" : ""} relative pt-10 text-xs md:text-sm lg:text-base bg-[#F6F6F6] dark:bg-[#2C3639] dark:text-slate-100`}>
                     <header className="note-app__header fixed top-0 left-0 right-0 z-50">
                         <Navigation name={name} logout={onLogout} />
                     </header>
-                    <main className="bg-[#F5F5F5] text-slate-700 min-h-[calc(100vh-40px)] p-4">
+                    <main className="min-h-[calc(100vh-40px)]">
                         <Routes>
                             <Route path="/" element={<HomePage />} />
                             <Route

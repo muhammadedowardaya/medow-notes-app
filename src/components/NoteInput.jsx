@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
-import { MdDone } from "react-icons/md";
-
-import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 import LocaleContext from "../contexts/LocaleContext";
 import ReactQuill from 'react-quill';
 import Swal from "sweetalert2";
+import { FaCheck } from "react-icons/fa";
 
 export default function NoteInput({ addNote }) {
     const { locale } = React.useContext(LocaleContext);
@@ -29,11 +27,11 @@ export default function NoteInput({ addNote }) {
 
     const modules = {
         toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
             [{ 'indent': '-1' }, { 'indent': '+1' }],                // Indentasi
             [{ 'align': [] }],                                      // Align text (kiri, tengah, kanan)
             ['bold', 'italic', 'underline', 'strike'],              // Format teks
-            [{ 'color': [] }, { 'background': [] }],                 
-            ['clean']                                               // Hapus format
+            [{ 'color': [] }, { 'background': [] }],               
         ],
     };
 
@@ -50,7 +48,7 @@ export default function NoteInput({ addNote }) {
                 }
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="p-2 border border-slate-400 w-full"
+                className="p-2 border border-slate-400 w-full dark:bg-[#DCD7C9] text-[#171717] dark:placeholder:text-[#171717]/50"
             />
             {/* <textarea
 				name="body"
@@ -65,11 +63,11 @@ export default function NoteInput({ addNote }) {
                 className="p-2 resize-none h-52"
 			></textarea> */}
             <div>
-                <ReactQuill theme="snow" value={body} onChange={(value) => setBody(value)} className="bg-white w-full" modules={modules}/>
+                <ReactQuill theme="snow" value={body} onChange={(value) => setBody(value)} className="bg-white w-full dark:bg-[#DCD7C9] text-[#171717]" modules={modules}/>
             </div>
 
             <button className="note-save__button w-full bg-[#229799] text-white flex items-center justify-center py-1 rounded" type="submit">
-                <MdDone className="w-5 h-5 font-bold" />
+                <FaCheck className="w-5 h-5 font-bold" />
             </button>
         </form>
     );

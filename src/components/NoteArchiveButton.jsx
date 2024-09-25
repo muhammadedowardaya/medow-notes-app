@@ -8,7 +8,7 @@ export default function NoteArchiveButton({ onArchive }) {
     
 	return (
 		<button className="note-archive__button" onClick={() => onArchive()}>
-			<PiArchiveTrayFill className="w-10 h-10"/>
+			<PiArchiveTrayFill className="w-5 h-5 sm:w-10  sm:h-10"/>
 		</button>
 	);
 }
