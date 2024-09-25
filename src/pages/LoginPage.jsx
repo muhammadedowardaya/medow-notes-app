@@ -25,13 +25,13 @@ export default function LoginPage({ loginSuccess }) {
     };
 
     return (
-        <div id="form-page" className="flex items-center justify-center flex-col pt-10">
-            <h1 className="text-center p-4 text-[120%] font-bold">
+        <div id="form-page" className="flex items-center justify-center flex-col pt-10 px-4 w-full">
+            <h1 className="text-center p-4 text-[120%] font-bold text-slate-600 dark:text-white">
                 {locale === "id"
                     ? "Ayo, Login untuk menggunakan aplikasi!"
                     : "Come on, log in to use the application!"}
             </h1>
-            <form onSubmit={onSubmitHandler} className="w-full max-w-[30%] p-6 pt-8 mx-auto bg-[#424242] text-slate-300 rounded-md">
+            <form onSubmit={onSubmitHandler} className="w-full max-w-[400px] p-6 pt-8 mx-auto bg-[#8785A2] text-white dark:bg-[#A27B5C] rounded-md block text-sm">
                 <div className="grid grid-cols-[max-content_auto] gap-3">
                     <label htmlFor="email" className="row-start-1 col-start-1 mr-8">
                         Email
@@ -57,7 +57,7 @@ export default function LoginPage({ loginSuccess }) {
                     />
                 </div>
                 <div className="button-group space-y-2 mt-4">
-                    <button type="submit" className="bg-sky-400 text-white px-4 pb-[2px] w-full block">Login</button>
+                    <button type="submit" className="bg-[#FFC7C7] dark:text-white dark:bg-[#2C3639] text-[#171717] px-4 pb-[2px] w-full block">Login</button>
                     <div className="flex items-center gap-x-2 justify-center">
                         <span>
                             {locale === "id" ? "Belum punya akun?" : "Don't have an account?"}

@@ -30,57 +30,65 @@ export default function RegisterPage() {
     };
 
     return (
-        <div id="form-page" className="pt-10">
-            <h1 className="text-center p-4 text-[120%] font-bold">Isi form untuk mendaftar akun</h1>
-            <form onSubmit={onSubmitHandler} className="w-full max-w-[30%] p-6 pt-8 mx-auto bg-[#424242] text-slate-300 rounded-md">
-                <div className="grid grid-cols-[max-content_auto] gap-3">
-                    <label htmlFor="name" className="row-start-1 col-start-1 mr-2">
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={name}
-                        onChange={onNameChangeHandler}
-                        className="border rounded row-start-1 col-start-2 px-2 text-slate-600 w-full"
-                    />
-                    <label htmlFor="email" className="row-start-2 col-start-1 mr-2">
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={onEmailChangeHandler}
-                        className="border rounded row-start-2 col-start-2 px-2 text-slate-600 w-full"
-                    />
-                    <label htmlFor="password" className="row-start-3 col-start-1 mr-2">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={onPasswordChangeHandler}
-                        className="border rounded row-start-3 col-start-2 px-2 text-slate-600 w-full"
-                    />
-                    <label htmlFor="confirm-password" className="row-start-4 col-start-1 mr-2">
-                        Confirm Password
-                    </label>
-                    <input
-                        type="password"
-                        id="confirm-password"
-                        name="confirm-password"
-                        value={confirmPassword}
-                        onChange={onConfirmPasswordChangeHandler}
-                        className="border rounded row-start-4 col-start-2 px-2 text-slate-600 w-full"
-                    />
+        <div id="form-page" className="py-4 sm:pt-10 px-4">
+            <h1 className="text-center p-4 text-[120%] font-bold text-slate-600 dark:text-white">Isi form untuk mendaftar akun</h1>
+            <form onSubmit={onSubmitHandler} className="w-full max-w-[400px] text-sm p-6 pt-8 mx-auto bg-[#8785A2] text-white dark:bg-[#A27B5C] rounded-md">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label htmlFor="name" className="mr-2">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={onNameChangeHandler}
+                            className="border rounded px-2 text-slate-600 w-full"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="mr-2">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={onEmailChangeHandler}
+                            className="border rounded px-2 text-slate-600 w-full"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="mr-2">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={onPasswordChangeHandler}
+                            className="border rounded px-2 text-slate-600 w-full"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="confirm-password" className="mr-2">
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirm-password"
+                            value={confirmPassword}
+                            onChange={onConfirmPasswordChangeHandler}
+                            className="border rounded px-2 text-slate-600 w-full"
+                        />
+                    </div>
                 </div>
                 <div className="button-group space-y-2 mt-6">
-                    <button type="submit" className="bg-sky-400 text-white px-4 pb-[2px] w-full block">Register</button>
+                    <button type="submit" className="bg-[#FFC7C7] dark:text-white dark:bg-[#2C3639] text-[#171717] px-4 pb-[2px] w-full block">Register</button>
                     <div className="flex items-center gap-x-2 justify-center">
                         <span>
                             {locale === "id" ? "Sudah punya akun?" : "Already have an account?"}
