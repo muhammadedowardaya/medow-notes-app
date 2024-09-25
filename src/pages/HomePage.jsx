@@ -63,7 +63,7 @@ export default function HomePage() {
     return (
         <section id="home-page" className="relative sm:fixed left-0 right-0 top-0 bottom-0 flex flex-col sm:grid sm:grid-cols-[50vw_50vw] overflow-hidden">
             <div className="sm:row-start-1 sm:col-start-1 flex flex-col order-2 pt-12 mx-4 sm:ml-10">
-                <div className="p-4 pb-8 sm:py-8 fixed z-20 sm:static top-[40px] sm:top-[40px] left-0 right-0 bg-[#FFC7C7] dark:bg-[#2C3639]">
+                <div className="p-4 pb-8 sm:mt-8 fixed z-20 sm:static top-[40px] sm:top-[40px] left-0 right-0 bg-[#FFC7C7] dark:bg-[#2C3639]">
                     <h2 className="mb-4 mt-4 sm:mt-0 dark:text-white text-center text-[120%] font-bold">{locale === "id" ? "Catatan Aktif" : "Active Notes"}</h2>
                     <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} className="rounded w-full max-w-[400px] mx-auto border border-[#424242] dark:text-[#171717]" iconClassName="text-white bg-[#424242] w-10 h-10 rounded-r p-2"/>
                 </div>
@@ -77,7 +77,7 @@ export default function HomePage() {
                     </div>
                 )}
             </div>
-            <div className="hidden sm:block sm:col-start-2 sm:pt-4 lg:pb-8 lg:p-4 sm:pb-10 sm:mt-20 sm:mx-4 lg:mx-10 mt-4 order-1 h-max bg-[#3F4E4F]">
+            <div className="hidden sm:block sm:col-start-2 sm:pt-4 lg:pb-8 lg:p-4 sm:pb-10 sm:mt-20 sm:mx-4 lg:mx-10 mt-4 order-1 h-max bg-[#3F4E4F] text-white">
                 <h3 className="text-center mb-6">{locale === 'en' ? 'Add new note' : 'Tambah catatan baru'}</h3>
                 <NoteInput addNote={addNoteHandler} />
             </div>
