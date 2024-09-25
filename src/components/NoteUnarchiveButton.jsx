@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export default function NoteUnarchiveButton({ onUnarchive }) {
 	return (
 		<button className="note-unarchive__button" onClick={() => onUnarchive()}>
-			<MdOutlineUnarchive />
+			<MdOutlineUnarchive className="w-10 h-10"/>
 		</button>
 	);
 }

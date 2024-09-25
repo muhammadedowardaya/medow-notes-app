@@ -7,9 +7,9 @@ export default function NoteEmpty() {
 	const { locale } = React.useContext(LocaleContext);
 
 	return (
-		<div className="note-empty">
-			<ImFileEmpty className="icon" />
-			<h1>{locale === "id" ? "Tidak ada catatan" : "Empty Notes"}</h1>
+		<div className="note-empty flex items-center gap-4">
+			<ImFileEmpty className="icon w-10 h-10" />
+			<h1>{locale === "id" ? "Tidak ada catatan ditemukan." : "No records found."}</h1>
 		</div>
 	);
 }
