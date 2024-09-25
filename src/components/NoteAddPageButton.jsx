@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export default function NoteAddPageButton({ onAdd, className }) {
 	return (
 		<button className={`note-add__button ${className}`} onClick={() => onAdd()}>
-			<IoIosAddCircle className="w-10 h-10" />
+			<IoIosAddCircle className="w-16 h-16" />
 		</button>
 	);
 }
