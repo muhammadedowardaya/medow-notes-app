@@ -28,6 +28,7 @@ export default function NoteInput({ addNote }) {
     const modules = {
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }], 
             [{ 'indent': '-1' }, { 'indent': '+1' }],                // Indentasi
             [{ 'align': [] }],                                      // Align text (kiri, tengah, kanan)
             ['bold', 'italic', 'underline', 'strike'],              // Format teks

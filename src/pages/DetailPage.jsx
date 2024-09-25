@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { showFormattedDate } from "../utils";
+import { getTimeAgo, showFormattedDate } from "../utils";
 import NoteArchiveButton from "../components/NoteArchiveButton";
 import NoteDeleteButton from "../components/NoteDeleteButton";
 import NoteUnarchiveButton from "../components/NoteUnarchiveButton";
@@ -136,10 +136,11 @@ export default function DetailPage() {
                     <span>{locale === 'en' ? 'Note Detail' : 'Detail Catatan'}</span>
                 </li>
             </ul>
-            <div className="border-2 w-full sm:max-w-[70%] mx-auto bg-[#FFC7C7] dark:bg-[#3F4E4F] dark:text-[#F5E8C7] p-4">
+            <div className="border-2 w-full sm:max-w-[70%] mx-auto bg-[#F6F6F6] dark:bg-[#3F4E4F] dark:text-[#F5E8C7] p-4">
                 <h1 className="title font-bold text-[150%]">{note.title}</h1>
                 <p className="createdAt mt-2 underline underline-offset-4">{showFormattedDate(note.createdAt)}</p>
-                <div className="body my-4 ql-editor border border-[#E1D7C6] bg-[#FFE2E2] text-[#171717] dark:text-[#171717] dark:bg-[#DCD7C9]" dangerouslySetInnerHTML={{ __html: note.body }}></div>
+                <div className="body my-4 ql-editor border border-[#E1D7C6] bg-[#F6F6F6] text-[#171717] dark:text-[#171717] dark:bg-[#DCD7C9]" dangerouslySetInnerHTML={{ __html: note.body }}></div>
+                <p className="createdAt ml-auto w-max mr-2 mb-4">{getTimeAgo(note.createdAt)}</p>
                 <div className="flex items-center gap-x-4">
                     {note.archived == true ? (
                         <div className="flex items-center gap-x-2">
